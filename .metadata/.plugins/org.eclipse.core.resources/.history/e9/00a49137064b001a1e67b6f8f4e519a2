@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+Enter the Base:<br>
+<input type="text" id="first" name="base">
+<br><br>
+
+Enter the Exponent:<br>
+<input type="text" id="second" name="exponent">
+<br><br>
+
+<input type="submit" id="submit" value="Submit">
+<br><br>
+
+Result:<br>
+<input type="text" id="result" name="result">
+<br>
+
+<script>
+$(document).ready(function(){
+  $("#submit").click(function(){
+
+
+    var result=document.getElementById("result").value
+console.log(result)
+ var firstNumber=document.getElementById("first").value
+ var secondNumber=document.getElementById("second").value
+
+   
+url="http:localhost:8080/calculatorservice/operation"
+data=JSON.stringify({
+"number1":firstNumber,
+"number2":secondNumber})
+
+
+$.ajax({
+  url:url,
+  type:"POST",
+  data:data,
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  success: function(data){
+   
+
+document.getElementById("result").value=data;
+  }
+})
+
+  });
+});
+
+</script>
+
+
+
+
+
+</body>
+</html>
